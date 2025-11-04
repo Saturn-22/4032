@@ -174,7 +174,7 @@ const AppContent = () => {
 const App = () => {
     return (
         // #blackjack 
-        <Router basename={process.env.NODE_ENV === 'production' ? '/ee4032_frontend' : '/'}> 
+        <Router basename={process.env.PUBLIC_URL}>
             <AppContent />
         </Router>
     );
