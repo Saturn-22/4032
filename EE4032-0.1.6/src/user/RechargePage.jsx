@@ -33,7 +33,7 @@ const RechargePage = ({ onBack, onSubmit }) => {
 
   return (
     <div style={styles.container}>
-      <h2>Recharge</h2>
+      <h2 style={{ color: 'black' }}>Recharge</h2>
       <input
         type="number"
         placeholder="Enter amount"

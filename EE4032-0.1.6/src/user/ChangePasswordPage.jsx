@@ -39,13 +39,14 @@ const ChangePasswordPage = ({ onBack }) => {
 
   return (
     <div style={styles.container}>
-      <h2>Change Password</h2>
+      <h2 style={{ color: 'black' }}>Change Password</h2>
       <input
         type="password"
         placeholder="Current password"
         value={oldPassword}
         onChange={(e) => setOldPassword(e.target.value)}
-        style={styles.input}
+        style={styles.input} 
+        
       />
       <input
         type="password"
@@ -93,6 +94,7 @@ const styles = {
     padding: "8px",
     fontSize: "16px",
     width: "250px",
+    color:"black",
   },
   button: {
     padding: "10px 20px",

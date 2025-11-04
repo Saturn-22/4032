@@ -283,6 +283,7 @@ export default function GomokuPlay() {
   return (
     <div style={styles.container}>
       <button style={styles.backButton} onClick={goBack}>Back</button>
+      {/* 标题保留白色，不修改 */}
       <h2 style={{ color: "#fff" }}>Gomoku</h2>
       {error && <div style={styles.error}>{error}</div>}
 
@@ -394,7 +395,7 @@ export default function GomokuPlay() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     pointerEvents: 'none',
-                    color: '#5c3b12',
+                    color: '#000',
                     fontSize: 12,
                     fontWeight: 600,
                     letterSpacing: 0,
@@ -413,11 +414,8 @@ export default function GomokuPlay() {
                     position: 'absolute',
                     left: 0,
                     top:
-                      // 起点从棋盘内容区开始：padding（绝对定位相对内容区，不加 board 边框）
                       padding +
-                      // 纵向每行步长：格高 + 单元格边框厚度（Classic=2，Wood=1），不包含横向 gap
                       r * (CELL_SIZE + vBorder) +
-                      // 半格偏移；Wood 最后一行无下边线，单独使用 CELL_SIZE/2
                       ((boardTheme === 'wood' && r === size - 1) ? (CELL_SIZE / 2) : ((CELL_SIZE + vBorder) / 2)),
                     transform: 'translateY(-50%)',
                     width: padding,
@@ -425,7 +423,7 @@ export default function GomokuPlay() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     pointerEvents: 'none',
-                    color: '#5c3b12',
+                    color: '#000', 
                     fontSize: 12,
                     fontWeight: 600,
                   }}
@@ -506,19 +504,21 @@ const styles = {
     borderRadius: 5,
     border: "none",
     backgroundColor: "#6c757d",
-    color: "#fff",
+    color: "#fff", 
     cursor: "pointer",
   },
   stateCard: {
-    background: "rgba(255,255,255,0.9)",
+    background: "#fff",
     borderRadius: 8,
     padding: 16,
     marginBottom: 12,
+    color: "#000", 
+    boxShadow: "0 2px 8px rgba(0,0,0,0.08)", 
   },
   primaryBtn: {
     padding: "8px 14px",
     backgroundColor: "#007bff",
-    color: "#fff",
+    color: "#fff", 
     border: "none",
     borderRadius: 6,
     cursor: "pointer",
@@ -526,7 +526,7 @@ const styles = {
   secondaryBtn: {
     padding: "8px 14px",
     backgroundColor: "#e9ecef",
-    color: "#222",
+    color: "#000", 
     border: "1px solid #d6d9dd",
     borderRadius: 6,
     cursor: "pointer",
@@ -547,6 +547,7 @@ const styles = {
     padding: 16,
     boxShadow: "0 10px 30px rgba(0,0,0,0.25)",
     textAlign: "center",
+    color: "#000", 
   },
   error: {
     background: "#ffe5e5",
@@ -560,7 +561,7 @@ const styles = {
     top: -28,
     left: '50%',
     transform: 'translateX(-50%)',
-    color: '#fff',
+    color: "#fff",
     padding: '6px 10px',
     borderRadius: 8,
     fontWeight: 700,
@@ -571,7 +572,7 @@ const styles = {
     display: "inline-block",
     margin: "24px auto",
     padding: 12,
-    background: "rgba(255,255,255,0.96)",
+    background: "#fff",
     borderRadius: 12,
     border: "1px solid rgba(0,0,0,0.08)",
     boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.03), 0 6px 20px rgba(0,0,0,0.15)",
@@ -594,34 +595,19 @@ const styles = {
     display: "flex",
     alignItems: "center",
     gap: 6,
-    background: "rgba(255,255,255,0.9)",
+    background: "#fff", 
     border: "1px solid rgba(0,0,0,0.06)",
     borderRadius: 8,
     padding: "6px 8px",
     marginTop: 8,
     marginBottom: 4,
+    color: "#000", 
   },
   select: {
     padding: "4px 6px",
     borderRadius: 6,
     border: "1px solid #ccc",
     background: "#fff",
+    color: "#000", 
   },
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

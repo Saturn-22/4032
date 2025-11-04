@@ -33,7 +33,7 @@ const WithdrawPage = ({ onBack, onSubmit }) => {
 
   return (
     <div style={styles.container}>
-      <h2>Withdraw</h2>
+      <h2 style={{ color: 'black' }}>Withdraw</h2>
       <input
         type="number"
         placeholder="Enter withdraw amount"

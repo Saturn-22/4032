@@ -32,11 +32,11 @@ const UserInfoPage = ({ userInfo, onBack, onChangePassword, onLogout, onRecharge
       const { userVaultContract } = getContracts();
       const tx = await userVaultContract.logout();
       await tx.wait();
-      alert("鉁?Logged out");
+      alert("✅ Logged out");
       onLogout?.();
     } catch (err) {
       console.error(err);
-      alert("鉂?Logout failed: " + (err.reason || err.message));
+      alert("❌ Logout failed: " + (err.reason || err.message));
     } finally {
       setLoggingOut(false);
     }
@@ -46,7 +46,6 @@ const UserInfoPage = ({ userInfo, onBack, onChangePassword, onLogout, onRecharge
     <div style={styles.container}>
       <button style={styles.backButton} onClick={onBack}>Back</button>
 
-      {}
       <h2 style={styles.title}>User Information</h2>
       
       <div style={styles.infoBox}>
@@ -104,9 +103,9 @@ const styles = {
     margin: "20px auto",
     padding: "20px",
     borderRadius: "8px",
-    backgroundColor: "#000", 
-    color: "#fff", 
-    boxShadow: "0 2px 10px rgba(255,255,255,0.15)",
+    backgroundColor: "#fff", 
+    color: "#000", 
+    boxShadow: "0 2px 10px rgba(0,0,0,0.15)", 
     width: "320px",
     textAlign: "left",
     fontSize: "16px",
