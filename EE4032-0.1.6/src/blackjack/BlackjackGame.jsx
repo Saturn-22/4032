@@ -18,7 +18,7 @@ const blackjackAddress = BLACKJACK_ADDRESS;
 
 // API endpoint
 //const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:5000';
-const API_BASE_URL = 'https://ee4032.onrender.com';
+const API_BASE_URL = 'https://blackjack-dptz.onrender.com';
 
 // --- Helper Functions ---
 
@@ -427,11 +427,21 @@ const handleStartGame = async () => {
 };
 
 const handleHit = async () => {
-    if (!isPlayerTurn || !account || isLoading) return;
+    if (!isPlayerTurn || !account || isLoading || !vaultContract || !provider) return;
     setIsLoading(true);
     setTxStatus('Hit...');
     setIsPlayerTurn(false); setCanDouble(false); setIsSplittable(false);
     try {
+        // [FIX] Update session before hit to prevent timeout
+        const signer = await provider.getSigner();
+        const vaultWithSigner = vaultContract.connect(signer);
+        try {
+            await vaultWithSigner.updateLastActivity();
+        } catch (sessionError) {
+            console.error("Session update failed before hit:", sessionError);
+            throw new Error("Session expired. Please refresh the page and try again.");
+        }
+        
         const handToHit = isSplit ? activeHand : 0;
         const response = await fetch(`${API_BASE_URL}/api/hit`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ playerAddress: account, hand: handToHit }), });
         if (!response.ok) { const err = await response.json(); throw new Error(`Hit API error: ${err.error || response.statusText}`); }
@@ -570,6 +580,16 @@ const handleSettle = async (settlementData) => {
     try {
         const signer = await provider.getSigner();
         const blackjackWithSigner = blackjackContract.connect(signer);
+        // [FIX] If session update fails, throw error instead of continuing
+        const vaultWithSigner = vaultContract.connect(signer);
+        try {
+            const activityTx = await vaultWithSigner.updateLastActivity();
+            await activityTx.wait(1); 
+            console.log("User session refreshed before settlement.");
+        } catch (sessionError) {
+            console.error("Update activity before settlement failed:", sessionError.reason || sessionError.message);
+            throw new Error("Session expired. Unable to settle game. Please refresh the page and contact support.");
+        }
         const settleArgs = [
             currentRoundId, settlementData.holeCardId, settlementData.holeSalt, settlementData.holeProof,
             settlementData.initial3.map(r => ({ pos: r.pos, cardId: r.cardId, salt: r.salt, proof: r.proof })),
