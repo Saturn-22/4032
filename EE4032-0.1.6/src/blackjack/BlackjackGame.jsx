@@ -435,18 +435,12 @@ const handleHit = async () => {
         // [FIX] Update session before hit to prevent timeout
         const signer = await provider.getSigner();
         const vaultWithSigner = vaultContract.connect(signer);
-        try {
-            await vaultWithSigner.updateLastActivity();
-        } catch (sessionError) {
-            console.error("Session update failed before hit:", sessionError);
-            throw new Error("Session expired. Please refresh the page and try again.");
-        }
         
         const handToHit = isSplit ? activeHand : 0;
         const response = await fetch(`${API_BASE_URL}/api/hit`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ playerAddress: account, hand: handToHit }), });
         if (!response.ok) { const err = await response.json(); throw new Error(`Hit API error: ${err.error || response.statusText}`); }
         
-        // --- [FIX] Trust backend state (Bug 3) ---
+        // --- [FIX] Trust backend state ---
         const { newCard, hand, newHandCards: backendCardIds } = await response.json();
         
         let newHandCards;

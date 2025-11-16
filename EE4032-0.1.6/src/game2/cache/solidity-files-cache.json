@@ -75,6 +75,81 @@
       "artifacts": [
         "UserVaultSystem"
       ]
+    },
+    "C:\\Users\\KYR\\ee4032\\EE4032-0.1.6\\src\\game2\\contracts\\blackjack_settlement.sol": {
+      "lastModificationDate": 1763266339992,
+      "contentHash": "d1f9e0782517976b630e382b1028149d",
+      "sourceName": "contracts/blackjack_settlement.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "BlackjackSettlement",
+        "IUserVaultSystem"
+      ]
+    },
+    "C:\\Users\\KYR\\ee4032\\EE4032-0.1.6\\src\\game2\\contracts\\UserVaultSystem.sol": {
+      "lastModificationDate": 1763289938466,
+      "contentHash": "001e7dd79359b7d629861abf5e4a8487",
+      "sourceName": "contracts/UserVaultSystem.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.7.0 <0.9.0"
+      ],
+      "artifacts": [
+        "UserVaultSystem"
+      ]
     }
   }
 }
